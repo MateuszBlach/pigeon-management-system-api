@@ -29,6 +29,7 @@
 	<properties>
 		<java.version>22</java.version>
 		<spring-boot-starter-mail.version>3.3.2</spring-boot-starter-mail.version>
+		<validation-api.version>2.0.1.Final</validation-api.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -59,6 +60,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 			<version>${spring-boot-starter-mail.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${validation-api.version}</version>
 		</dependency>
 	</dependencies>
 
