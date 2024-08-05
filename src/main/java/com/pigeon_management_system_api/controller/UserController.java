@@ -1,15 +1,19 @@
 package com.pigeon_management_system_api.controller;
 
+import com.pigeon_management_system_api.dto.UserLoginDTO;
 import com.pigeon_management_system_api.dto.UserRegistrationDTO;
 import com.pigeon_management_system_api.model.User;
 import com.pigeon_management_system_api.repository.UserRepository;
+import com.pigeon_management_system_api.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -19,6 +23,9 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/all")
     public List<User> getAllUsers() {
@@ -45,5 +52,17 @@ public class UserController {
         logger.info("User registered with ID: " + savedUser.getId());
 
         return savedUser;
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@Valid @RequestBody UserLoginDTO userLoginDTO) {
+        logger.info("Received request to login user with email: " + userLoginDTO.getEmail());
+
+        Optional<User> user = userService.login(userLoginDTO);
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
+        } else {
+            return ResponseEntity.status(401).build();
+        }
     }
 }
