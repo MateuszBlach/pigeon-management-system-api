@@ -11,8 +11,8 @@ import java.io.Serializable;
 public class Pigeon implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pigeon_seq_gen")
+    @SequenceGenerator(name = "pigeon_seq_gen", sequenceName = "pigeon_seq", allocationSize = 1)
     private Integer id;
     @Column(name = "ring")
     private String ring;
