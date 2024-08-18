@@ -14,9 +14,7 @@ public class Pigeon implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pigeon_seq_gen")
     @SequenceGenerator(name = "pigeon_seq_gen", sequenceName = "pigeon_seq", allocationSize = 1)
     private Integer id;
-    @Column(name = "ring")
     private String ring;
-    @Column(name = "gender")
     private String gender;
     @Column(name = "eye_color")
     private String eyeColor;
