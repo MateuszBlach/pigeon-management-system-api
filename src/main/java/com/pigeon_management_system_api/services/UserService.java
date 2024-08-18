@@ -1,10 +1,12 @@
 package com.pigeon_management_system_api.services;
 
+import com.pigeon_management_system_api.config.AppException;
 import com.pigeon_management_system_api.dto.UserLoginDTO;
 import com.pigeon_management_system_api.dto.UserRegistrationDTO;
 import com.pigeon_management_system_api.model.User;
 import com.pigeon_management_system_api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,9 +26,10 @@ public class UserService {
             if (userLoginDTO.getPassword().equals(user.getPassword())) {
                 return Optional.of(user);
             }
+            throw new AppException("Błędne hasło",HttpStatus.BAD_REQUEST);
         }
 
-        return Optional.empty();
+        throw new AppException("Użytkownik nie isntnieje", HttpStatus.BAD_REQUEST);
     }
 
     public List<User> getAllUsers() {
