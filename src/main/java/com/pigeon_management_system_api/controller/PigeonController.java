@@ -23,19 +23,19 @@ public class PigeonController {
     private PigeonService pigeonService;
 
     @GetMapping("/{user_id}/all")
-    public ResponseEntity<List<Pigeon>> getPigeonsByUserId(@PathVariable("user_id") Integer userId) {
+    public ResponseEntity<List<PigeonDTO>> getPigeonsByUserId(@PathVariable("user_id") Integer userId) {
 
         logger.info("Received request to get all pigeons for user id: "+userId);
-        List<Pigeon> pigeons = pigeonService.getPigeonsByUserId(userId);
+        List<PigeonDTO> pigeons = pigeonService.getPigeonsByUserId(userId);
         logger.info("Found "+pigeons.size()+" pigeons for user id: "+userId);
 
         return ResponseEntity.ok(pigeons);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Pigeon> addPigeon(@Valid @RequestBody PigeonDTO pigeonDTO){
+    public ResponseEntity<PigeonDTO> addPigeon(@Valid @RequestBody PigeonDTO pigeonDTO){
 
-        Pigeon pigeon = pigeonService.addPigeon(pigeonDTO);
+        PigeonDTO pigeon = pigeonService.addPigeon(pigeonDTO);
 
         return ResponseEntity.ok(pigeon);
     }
