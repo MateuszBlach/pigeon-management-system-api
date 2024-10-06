@@ -39,4 +39,13 @@ public class PigeonController {
 
         return ResponseEntity.ok(pigeon);
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<PigeonDTO> deletePigeon(
+            @Valid @RequestBody PigeonDTO pigeonDTO
+    ){
+        logger.info("Received request to delete pigeon of ring number: "+pigeonDTO.getRing());
+        pigeonService.deletePigeon(pigeonDTO);
+        return  ResponseEntity.ok(pigeonDTO);
+    }
 }
