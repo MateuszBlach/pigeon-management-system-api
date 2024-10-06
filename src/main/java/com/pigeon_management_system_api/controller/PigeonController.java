@@ -48,4 +48,13 @@ public class PigeonController {
         pigeonService.deletePigeon(pigeonDTO);
         return  ResponseEntity.ok(pigeonDTO);
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<PigeonDTO> updatePigeon(
+            @Valid @RequestBody PigeonDTO pigeonDTO
+    ){
+        logger.info("Received request to update pigeon of ring number: "+pigeonDTO.getRing());
+        PigeonDTO pigeon = pigeonService.updatePigeon(pigeonDTO);
+        return ResponseEntity.ok(pigeon);
+    }
 }

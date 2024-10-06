@@ -33,4 +33,10 @@ public class PigeonService {
         Pigeon pigeon = pigeonMapper.toPigeon(pigeonDTO);
         pigeonRepository.delete(pigeon);
     }
+
+    public PigeonDTO updatePigeon(PigeonDTO pigeonDTO){
+        Pigeon pigeon = pigeonMapper.toPigeon(pigeonDTO);
+        Pigeon updatedPigeon = pigeonRepository.save(pigeon);
+        return pigeonMapper.toPigeonDTO(updatedPigeon);
+    }
 }
