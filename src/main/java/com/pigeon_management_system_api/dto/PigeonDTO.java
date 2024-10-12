@@ -12,8 +12,7 @@ public class PigeonDTO {
     @NotEmpty
     private String ring;
     private String gender;
-    private String eyeColor;
-    private String plumageColor;
+    private String color;
     @NotEmpty
     private Integer userId;
 }
