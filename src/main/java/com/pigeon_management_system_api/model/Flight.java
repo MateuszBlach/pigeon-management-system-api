@@ -15,6 +15,8 @@ public class Flight implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "flight_seq_gen")
     @SequenceGenerator(name = "flight_seq_gen", sequenceName = "flight_seq", allocationSize = 1)
     private Integer id;
+    @Column(name = "user_id")
+    private Integer userId;
     private Double distance;
     private Date date;
     private String city;

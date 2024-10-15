@@ -22,10 +22,12 @@ public class FlightController {
     @Autowired
     private FlightService flightService;
 
-    @GetMapping("/all")
-    public ResponseEntity<List<FlightDTO>> getAllFlights() {
-        logger.info("Received request to get all flights");
-        List<FlightDTO> flightDTOList =flightService.getAllFlights();
+    @GetMapping("/{flight_id/all")
+    public ResponseEntity<List<FlightDTO>> getAllFlights(
+            @PathVariable("flight_id") Integer flightId
+    ) {
+        logger.info("Received request to get all flights for flightId: "+flightId);
+        List<FlightDTO> flightDTOList =flightService.getAllFlightsForUserId(flightId);
         logger.info("Found "+flightDTOList.size()+" flights");
         return ResponseEntity.ok(flightDTOList);
     }

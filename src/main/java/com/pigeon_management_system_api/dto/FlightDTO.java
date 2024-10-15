@@ -11,6 +11,8 @@ public class FlightDTO {
     @NotEmpty
     private Integer id;
     @NotEmpty
+    private Integer userId;
+    @NotEmpty
     private Double distance;
     @NotEmpty
     private Date date;

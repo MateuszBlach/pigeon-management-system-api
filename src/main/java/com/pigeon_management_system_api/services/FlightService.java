@@ -16,8 +16,8 @@ public class FlightService {
     private final FlightRepository flightRepository;
     private final FlightMapper flightMapper;
 
-    public List<FlightDTO> getAllFlights() {
-        List<Flight> flightList = flightRepository.findAll();
+    public List<FlightDTO> getAllFlightsForUserId(Integer userId) {
+        List<Flight> flightList = flightRepository.findByUserId(userId);
         return flightMapper.toFlightDTOList(flightList);
     }
 
