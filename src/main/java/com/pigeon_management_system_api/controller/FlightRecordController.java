@@ -20,7 +20,7 @@ public class FlightRecordController {
     @Autowired
     private FlightRecordService flightRecordService;
 
-    @GetMapping("/{flight_id/all")
+    @GetMapping("/{flight_id}/all")
     public ResponseEntity<List<FlightRecordDTO>> getAllFlightRecordsForFlight(@PathVariable("flight_id") Integer flightId) {
         logger.info("Received request to get all flight records for flight id: "+flightId);
         List<FlightRecordDTO> flightRecordList = flightRecordService.getAllFlightRecordsForFlight(flightId);

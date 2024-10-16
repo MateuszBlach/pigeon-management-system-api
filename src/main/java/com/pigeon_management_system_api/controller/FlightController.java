@@ -22,7 +22,7 @@ public class FlightController {
     @Autowired
     private FlightService flightService;
 
-    @GetMapping("/{flight_id/all")
+    @GetMapping("/{flight_id}/all")
     public ResponseEntity<List<FlightDTO>> getAllFlights(
             @PathVariable("flight_id") Integer flightId
     ) {
