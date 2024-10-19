@@ -8,8 +8,6 @@ import javax.validation.constraints.NotEmpty;
 public class PigeonDTO {
 
     @NotEmpty
-    private Integer id;
-    @NotEmpty
     private String ring;
     private String gender;
     private String color;

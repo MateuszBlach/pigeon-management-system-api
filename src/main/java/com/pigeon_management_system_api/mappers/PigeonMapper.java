@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface PigeonMapper {
 
-    @Mapping(source = "id", target = "id")
+    @Mapping(source = "ring", target = "ring")
     PigeonDTO toPigeonDTO(Pigeon pigeon);
 
     Pigeon toPigeon(PigeonDTO pigeonDTO);
