@@ -1,5 +1,6 @@
 package com.pigeon_management_system_api.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -15,6 +16,7 @@ public class FlightDTO {
     @NotEmpty
     private Double distance;
     @NotEmpty
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
     @NotEmpty
     private String city;
