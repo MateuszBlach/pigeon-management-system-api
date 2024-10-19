@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface FlightRecordRepository extends JpaRepository<FlightRecord, String> {
+public interface FlightRecordRepository extends JpaRepository<FlightRecord, Integer> {
 
     List<FlightRecord> findByFlightId(Integer flightId);
 }

@@ -27,9 +27,8 @@ public class FlightService {
         return flightMapper.toFlightDTO(savedFlight);
     }
 
-    public void deleteFlight(FlightDTO flightDTO) {
-        Flight flight = flightMapper.toFlight(flightDTO);
-        flightRepository.delete(flight);
+    public void deleteFlight(Integer flightId) {
+        flightRepository.deleteById(flightId);
     }
 
     public FlightDTO updateFlight(FlightDTO flightDTO) {

@@ -39,11 +39,13 @@ public class FlightController {
         return ResponseEntity.ok(flight);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<FlightDTO> deleteFlight(@Valid @RequestBody FlightDTO flightDTO) {
-        logger.info("Receiver request to delete flight: "+flightDTO.toString());
-        flightService.deleteFlight(flightDTO);
-        return ResponseEntity.ok(flightDTO);
+    @DeleteMapping("/delete/{flight_id}")
+    public ResponseEntity deleteFlight(
+            @PathVariable("flight_id") Integer flightId
+    ) {
+        logger.info("Receiver request to delete flight of id: "+flightId);
+        flightService.deleteFlight(flightId);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/update")

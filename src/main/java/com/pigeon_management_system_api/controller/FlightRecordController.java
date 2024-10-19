@@ -37,12 +37,12 @@ public class FlightRecordController {
         return ResponseEntity.ok(flightRecord);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<FlightRecordDTO> deleteFlightRecord(
-            @Valid @RequestBody FlightRecordDTO flightRecordDTO
+    @DeleteMapping("/delete/{flight_reord_id}")
+    public ResponseEntity deleteFlightRecord(
+            @PathVariable("flight_reord_id") Integer flightRecordId
     ) {
-        flightRecordService.deleteFlightRecord(flightRecordDTO);
-        return ResponseEntity.ok(flightRecordDTO);
+        flightRecordService.deleteFlightRecord(flightRecordId);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/update")

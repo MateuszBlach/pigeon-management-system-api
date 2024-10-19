@@ -25,9 +25,8 @@ public class FlightRecordService {
         return flightRecordMapper.toFlightRecordDTO(savedFlightRecord);
     }
 
-    public void deleteFlightRecord(FlightRecordDTO flightRecordDTO) {
-        FlightRecord flightRecord = flightRecordMapper.toFlightRecord(flightRecordDTO);
-        flightRecordRepository.delete(flightRecord);
+    public void deleteFlightRecord(Integer flightRecordId) {
+        flightRecordRepository.deleteById(flightRecordId);
     }
 
     public FlightRecordDTO updateFlightRecord(FlightRecordDTO flightRecordDTO) {
