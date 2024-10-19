@@ -12,7 +12,7 @@ public class FlightRecordDTO {
     @NotEmpty
     private Integer flightId;
     @NotEmpty
-    private Integer pigeonId;
+    private String pigeonRing;
     @NotEmpty
     private Double distance;
     @NotEmpty
