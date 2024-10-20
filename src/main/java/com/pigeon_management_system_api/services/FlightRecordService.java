@@ -34,4 +34,9 @@ public class FlightRecordService {
         FlightRecord updatedFlightRecord = flightRecordRepository.save(flightRecord);
         return flightRecordMapper.toFlightRecordDTO(updatedFlightRecord);
     }
+
+    public List<FlightRecordDTO> getAllFlightRecordsForRing(String ring) {
+        List<FlightRecord> flightRecordList = flightRecordRepository.findByPigeonRing(ring);
+        return flightRecordMapper.toFlightRecordDTOList(flightRecordList);
+    }
 }

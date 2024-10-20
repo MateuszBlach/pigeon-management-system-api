@@ -29,6 +29,16 @@ public class FlightRecordController {
 
     }
 
+    @GetMapping("/{ring}/all-by-ring")
+    public ResponseEntity<List<FlightRecordDTO>> getAllFlightRecordsForRing(
+            @PathVariable("ring") String ring
+    ) {
+        logger.info("Received request to get all flight records for ring: {}",ring);
+        List<FlightRecordDTO> flightRecordList = flightRecordService.getAllFlightRecordsForRing(ring);
+        logger.info("Found "+flightRecordList.size()+" flight records for flight id: {}",ring);
+        return ResponseEntity.ok(flightRecordList);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<FlightRecordDTO> addFlightRecord(
             @Valid @RequestBody FlightRecordDTO flightRecordDTO

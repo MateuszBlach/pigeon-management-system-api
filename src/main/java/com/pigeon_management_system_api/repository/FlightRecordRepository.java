@@ -8,4 +8,6 @@ import java.util.List;
 public interface FlightRecordRepository extends JpaRepository<FlightRecord, Integer> {
 
     List<FlightRecord> findByFlightId(Integer flightId);
+
+    List<FlightRecord> findByPigeonRing(String ring);
 }
