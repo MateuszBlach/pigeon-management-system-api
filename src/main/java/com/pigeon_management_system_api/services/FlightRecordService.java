@@ -1,11 +1,14 @@
 package com.pigeon_management_system_api.services;
 import com.pigeon_management_system_api.dto.FlightRecordDTO;
+import com.pigeon_management_system_api.dto.PigeonResultDTO;
 import com.pigeon_management_system_api.mappers.FlightRecordMapper;
+import com.pigeon_management_system_api.model.Flight;
 import com.pigeon_management_system_api.model.FlightRecord;
 import com.pigeon_management_system_api.repository.FlightRecordRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -35,8 +38,19 @@ public class FlightRecordService {
         return flightRecordMapper.toFlightRecordDTO(updatedFlightRecord);
     }
 
-    public List<FlightRecordDTO> getAllFlightRecordsForRing(String ring) {
-        List<FlightRecord> flightRecordList = flightRecordRepository.findByPigeonRing(ring);
-        return flightRecordMapper.toFlightRecordDTOList(flightRecordList);
+    public List<PigeonResultDTO> getAllFlightRecordsForRing(String ring) {
+        List<Object[]> flightRecordList = flightRecordRepository.findByPigeonRingWithFlightInfo(ring);
+
+        return flightRecordList.stream().map(record -> {
+            FlightRecord flightRecord = (FlightRecord) record[0];
+            Flight flight = (Flight) record[1];
+            return new PigeonResultDTO(
+                    flightRecord.getDistance(),
+                    flightRecord.getCoefic(),
+                    flightRecord.getPoints(),
+                    flight.getDate(),
+                    flight.getCity()
+            );
+        }).collect(Collectors.toList());
     }
 }

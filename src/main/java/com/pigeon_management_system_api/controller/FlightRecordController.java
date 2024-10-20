@@ -1,6 +1,7 @@
 package com.pigeon_management_system_api.controller;
 
 import com.pigeon_management_system_api.dto.FlightRecordDTO;
+import com.pigeon_management_system_api.dto.PigeonResultDTO;
 import com.pigeon_management_system_api.services.FlightRecordService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,11 +31,11 @@ public class FlightRecordController {
     }
 
     @GetMapping("/{ring}/all-by-ring")
-    public ResponseEntity<List<FlightRecordDTO>> getAllFlightRecordsForRing(
+    public ResponseEntity<List<PigeonResultDTO>> getAllFlightRecordsForRing(
             @PathVariable("ring") String ring
     ) {
         logger.info("Received request to get all flight records for ring: {}",ring);
-        List<FlightRecordDTO> flightRecordList = flightRecordService.getAllFlightRecordsForRing(ring);
+        List<PigeonResultDTO> flightRecordList = flightRecordService.getAllFlightRecordsForRing(ring);
         logger.info("Found "+flightRecordList.size()+" flight records for flight id: {}",ring);
         return ResponseEntity.ok(flightRecordList);
     }
