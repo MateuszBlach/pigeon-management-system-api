@@ -54,4 +54,4 @@ jobs:
             ${{ runner.os }}-maven-
         
       - name: Run tests
-        run: mvn test
+        run: mvn -e test 
