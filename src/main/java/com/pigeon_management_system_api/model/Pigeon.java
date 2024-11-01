@@ -16,4 +16,9 @@ public class Pigeon implements Serializable {
     private String color;
     @Column(name = "user_id")
     private Integer userId;
+    @Column(name = "father_ring")
+    private String fatherRing;
+    @Column(name = "mother_ring")
+    private String motherRing;
+    private String description;
 }

@@ -13,4 +13,7 @@ public class PigeonDTO {
     private String color;
     @NotEmpty
     private Integer userId;
+    private String fatherRing;
+    private String motherRing;
+    private String description;
 }
