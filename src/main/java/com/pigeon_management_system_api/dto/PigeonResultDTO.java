@@ -16,5 +16,6 @@ public class PigeonResultDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date flightDate;
     private String city;
+    private Integer position;
 
 }

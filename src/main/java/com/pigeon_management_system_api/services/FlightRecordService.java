@@ -49,7 +49,8 @@ public class FlightRecordService {
                     flightRecord.getCoefic(),
                     flightRecord.getPoints(),
                     flight.getDate(),
-                    flight.getCity()
+                    flight.getCity(),
+                    flightRecord.getPosition()
             );
         }).collect(Collectors.toList());
     }
