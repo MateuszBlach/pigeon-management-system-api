@@ -10,7 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class PigeonResultDTO {
 
-    private Double flightRecordDistance;
+    private Double flightDistance;
     private Double coefic;
     private Double points;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")

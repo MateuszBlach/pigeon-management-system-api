@@ -14,7 +14,7 @@ public class FlightRecordDTO {
     @NotEmpty
     private String pigeonRing;
     @NotEmpty
-    private Double distance;
+    private Double position;
     @NotEmpty
     private Double coefic;
     @NotEmpty

@@ -18,7 +18,7 @@ public class FlightRecord implements Serializable {
     private Integer flightId;
     @Column(name = "pigeon_ring")
     private String pigeonRing;
-    private Double distance;
+    private Double position;
     private Double coefic;
     private Double points;
 }

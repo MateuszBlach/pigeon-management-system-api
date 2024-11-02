@@ -45,7 +45,7 @@ public class FlightRecordService {
             FlightRecord flightRecord = (FlightRecord) record[0];
             Flight flight = (Flight) record[1];
             return new PigeonResultDTO(
-                    flightRecord.getDistance(),
+                    flight.getDistance(),
                     flightRecord.getCoefic(),
                     flightRecord.getPoints(),
                     flight.getDate(),
