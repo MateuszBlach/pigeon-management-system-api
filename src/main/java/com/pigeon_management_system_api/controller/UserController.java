@@ -1,10 +1,12 @@
 package com.pigeon_management_system_api.controller;
 
 import com.pigeon_management_system_api.config.UserAuthenticationProvider;
+import com.pigeon_management_system_api.dto.ResetPasswordDTO;
 import com.pigeon_management_system_api.dto.UserDTO;
 import com.pigeon_management_system_api.dto.UserLoginDTO;
 import com.pigeon_management_system_api.dto.UserRegistrationDTO;
 import com.pigeon_management_system_api.model.User;
+import com.pigeon_management_system_api.services.PasswordResetTokenService;
 import com.pigeon_management_system_api.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -24,6 +26,7 @@ public class UserController {
 
 
     private final UserService userService;
+    private final PasswordResetTokenService passwordResetTokenService;
     private final UserAuthenticationProvider userAuthenticationProvider;
 
     @GetMapping("/all")
@@ -50,5 +53,21 @@ public class UserController {
         UserDTO userDto = userService.login(userLoginDTO);
         userDto.setToken(userAuthenticationProvider.createToken(userDto));
         return ResponseEntity.ok(userDto);
+    }
+
+    @PostMapping("/request-reset-password/{email}")
+    public ResponseEntity requestResetPassword(
+            @PathVariable("email") String email
+    ) {
+        passwordResetTokenService.generateAndSendResetToken(email);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<Boolean> resetPassword(
+            @Valid @RequestBody ResetPasswordDTO resetPasswordDTO
+    ) {
+        Boolean isPasswordChanged = passwordResetTokenService.resetPassword(resetPasswordDTO);
+        return ResponseEntity.ok(isPasswordChanged);
     }
 }
