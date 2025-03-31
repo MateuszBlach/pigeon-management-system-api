@@ -47,17 +47,13 @@ public class UserAuthenticationProvider {
 
     public Authentication validateToken(String token) {
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
-
         JWTVerifier verifier = JWT.require(algorithm).build();
-
         DecodedJWT decodedJWT = verifier.verify(token);
-
         UserDTO user = UserDTO.builder()
                 .email(decodedJWT.getSubject())
                 .name(decodedJWT.getClaim("name").asString())
                 .surname(decodedJWT.getClaim("surname").asString())
                 .build();
-
         return new UsernamePasswordAuthenticationToken(user,null, Collections.emptyList());
     }
 }

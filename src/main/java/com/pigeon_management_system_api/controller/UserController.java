@@ -59,7 +59,9 @@ public class UserController {
     public ResponseEntity requestResetPassword(
             @PathVariable("email") String email
     ) {
-        passwordResetTokenService.generateAndSendResetToken(email);
+
+        Integer token = passwordResetTokenService.generateResetToken(email);
+        passwordResetTokenService.sendResetEmail(email,token);
         return ResponseEntity.noContent().build();
     }
 

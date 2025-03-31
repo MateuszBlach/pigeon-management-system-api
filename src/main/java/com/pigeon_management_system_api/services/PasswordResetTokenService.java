@@ -6,7 +6,6 @@ import com.pigeon_management_system_api.model.PasswordResetToken;
 import com.pigeon_management_system_api.model.User;
 import com.pigeon_management_system_api.repository.PasswordResetTokenRepository;
 import com.pigeon_management_system_api.repository.UserRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.SimpleMailMessage;
@@ -28,7 +27,7 @@ public class PasswordResetTokenService {
     private final PasswordEncoder passwordEncoder;
     private final JavaMailSender mailSender;
 
-    public void generateAndSendResetToken(String email) {
+    public Integer generateResetToken(String email) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new AppException("Błędny email", HttpStatus.NOT_FOUND));
 
@@ -39,13 +38,11 @@ public class PasswordResetTokenService {
         resetToken.setToken(token);
         resetToken.setUserId(user.getId());
         resetToken.setExpiryDate(LocalDateTime.now().plusMinutes(EXPIRATION_MINUTES));
-
         passwordResetTokenRepository.save(resetToken);
-
-        sendResetEmail(email, token);
+        return token;
     }
 
-    private void sendResetEmail(String recipientEmail, Integer token) {
+    public void sendResetEmail(String recipientEmail, Integer token) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(recipientEmail);
         message.setSubject("Moja Hodowla - Resetowanie hasła");
